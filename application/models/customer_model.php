@@ -443,10 +443,6 @@ class Customer_Model extends MY_Model {
                 return FALSE; // No se pudo insertar el registro
             }
 
-
-
-
-
         } else { // Se registra una empresa
             $customer_id = $this->input->post('customer_id');
             
@@ -534,8 +530,14 @@ class Customer_Model extends MY_Model {
                 $this->registered_in = $this->session->userdata('user_branch'); // ID de la sucursal donde se está registrando el cliente
                 
                 if ($this->db->insert('customers', $this)) {
+
+                    $query = $this->db->query('SELECT LAST_INSERT_ID()');
+                    $row = $query->row_array();
+                    $LastIdInserted = $row['LAST_INSERT_ID()'];
+
                     return array(
-                        'id' => $this->db->insert_id(),
+                        //'id' => $this->db->insert_id(),
+                        'id' => $LastIdInserted,
                         'full_name' => $this->name,
                         'doc_type' => $this->doc_type,
                         'id_number' => $this->id_number,
