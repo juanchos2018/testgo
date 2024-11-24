@@ -6,7 +6,7 @@
       </h2>
       <section class="m-b-lg">
         <header class="wrapper text-center">
-          <strong>Acceda a su cuenta de usuario</strong>
+          <strong>Pruebas Go  :V</strong>
         </header>
 
 
