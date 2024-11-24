@@ -375,6 +375,7 @@ class Customer_Model extends MY_Model {
                  // (Para caja) Si no se debe emitir el ticket a nombre de la empresa
                 if (is_null($company) OR empty($company['id_number']) OR empty($company['name'])) {
                     return array(
+                        'mi_registro' => 'mio 0',
                         'id' => $this->db->insert_id(),
                         'full_name' => $this->name . ($this->last_name ? ' ' . $this->last_name : ''),
                         'id_number' => $this->id_number,
@@ -413,6 +414,7 @@ class Customer_Model extends MY_Model {
                                 'id_number' => $company_data['id_number'],
                                 'address' => $company['address'],
                                 'type' => $company_data['type'],
+                                'mi_registro' => 'mio 1',
                                 'barcode_inticard' => $company_data['barcode_inticard'],
                                 'barcode_card2' => $company_data['barcode_card2']
                             );
@@ -421,13 +423,21 @@ class Customer_Model extends MY_Model {
                         }
                     } else { // Se debe registrar la empresa
                         if ($this->db->insert('customers', $company_data)) {
+
+                            $query = $this->db->query('SELECT LAST_INSERT_ID()');
+                            $row = $query->row_array();
+                            $LastIdInserted = $row['LAST_INSERT_ID()'];
+
+                            
                             return array(
-                                'id' => $this->db->insert_id(),
+                                //'id' => $this->db->insert_id(),
+                                'id' => $$LastIdInserted,
                                 'full_name' => $company_data['name'],
                                 'doc_type' => $company['doc_type'],
                                 'id_number' => $company_data['id_number'],
                                 'address' => $company['address'],
                                 'type' => $company_data['type'],
+                                'mi_registro' => 'mio 2',
                                 'barcode_inticard' => $company_data['barcode_inticard'],
                                 'barcode_card2' => $company_data['barcode_card2']
                             );
