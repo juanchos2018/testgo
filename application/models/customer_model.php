@@ -374,9 +374,14 @@ class Customer_Model extends MY_Model {
                 
                  // (Para caja) Si no se debe emitir el ticket a nombre de la empresa
                 if (is_null($company) OR empty($company['id_number']) OR empty($company['name'])) {
+
+                    $query = $this->db->query('SELECT LAST_INSERT_ID()');
+                    $row = $query->row_array();
+                    $LastIdInserted = $row['LAST_INSERT_ID()'];
                     return array(
                         'mi_registro' => 'mio 0',
-                        'id' => $this->db->insert_id(),
+                       // 'id' => $this->db->insert_id(),
+                        'id' =>  $LastIdInserted,
                         'full_name' => $this->name . ($this->last_name ? ' ' . $this->last_name : ''),
                         'id_number' => $this->id_number,
                         'type' => $this->type,
