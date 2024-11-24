@@ -1,0 +1,1 @@
+﻿ALTER TABLE sales ALTER COLUMN coupon_id DROP NOT NULL;

@@ -1,0 +1,2 @@
+UPDATE product_details SET price = '179', offer_price = '159', cost = '84.79', cost_currency = 'S', currency_cost = 'S', invoice_currency = 'D', invoice_cost = '27.57' WHERE product_id = (SELECT products.id FROM products WHERE products.code = 'ML565PKL'); 
+UPDATE product_details SET price = '149', offer_price = '129', cost = '82.24', cost_currency = 'S', currency_cost = 'S', invoice_currency = 'D', invoice_cost = '21.46' WHERE product_id = (SELECT products.id FROM products WHERE products.code = 'WR450PK3'); 

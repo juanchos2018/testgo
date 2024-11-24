@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<button type="button">Iniciar</button>
+	<script src="xlsx-template.js"></script>
+	<script src="helper/xml-parser.js"></script>
+	<script>
+		document.querySelector('button').onclick = function () {
+			var req = new XMLHttpRequest();
+
+	        req.onreadystatechange = function (e) {
+	            if (req.status === 200 && req.readyState === 4) {
+	                var file = req.response; // arraybuffer
+	                console.info('file', file);
+
+	                var template = new XlsxTemplate(file);
+
+	                template.putData([['Hola', 10], ['Chau', 20], ['Texto plano', 30]], 'A1:B1');
+
+	                template.on('build', function (file) {
+	                	var fileURL = URL.createObjectURL(file);
+	                	alert('Descargar antes de continuar' + "\n" + fileURL);
+	                	URL.revokeObjectURL(fileURL);
+	                });
+
+	                template.build();
+	            }
+	        };
+	        
+	        req.open('GET', 'test.xlsx');
+	        req.responseType = 'arraybuffer';
+	        req.send();
+
+			
+		};
+	</script>
+</body>
+</html>

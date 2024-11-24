@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RiotTable</title>
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="../../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<h1 class="text-center">RiotTable</h1>
+
+	<div class="container">
+		<riot-table>
+			<div class="row">
+				<div class="col-lg-3">
+					<filter key="type">
+						<select class="form-control">
+							<option value="">- Seleccione -</option>
+							<option value="PERSONA">Personas naturales</option>
+							<option value="EMPRESA">Personas jurídicas</option>
+						</select>
+					</filter>
+				</div>
+				<div class="col-lg-1 col-lg-offset-3 text-right">
+					Filtro
+				</div>
+				<div class="col-lg-5">
+					<searchbox input_class="form-control"></searchbox>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nombres y apellidos</th>
+								<th>DNI/RUC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr each="{ data }">
+								<td>{ id }</td>
+								<td>{ full_name }</td>
+								<td>{ id_number }</td>
+							</tr>
+							<tr if="{ !data.length }">
+								<td if="{ !loading }" colspan="3" class="text-center">No se encontraron registros</td>
+								<td if="{ loading }" colspan="3" class="text-center">Cargando...</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					{ total } registros
+				</div>
+				<div class="col-lg-6">
+					<paginator button_class="btn btn-sm btn-default" active_button_class="btn btn-sm btn-primary"></paginator>
+				</div>
+			</div>
+		</riot-table>
+	</div>
+
+	<script type="text/javascript" src="../../../../node_modules/riot/riot+compiler.min.js"></script>
+	<script type="riot/tag" src="searchbox.tag"></script>
+	<script type="riot/tag" src="filter.tag"></script>
+	<script type="riot/tag" src="paginator.tag"></script>
+	<script type="riot/tag" src="riot-table.tag"></script>
+	<script>
+		riot.mount('riot-table', {
+			data: '../../../../index.php/customers/get_list_for_sale/'
+		});
+	</script>
+</body>
+</html>

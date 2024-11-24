@@ -1,0 +1,3 @@
+﻿/* ESTA ES SOLO UNA CONSULTA DE PRUEBA PARA VER SI REALMENTE FUNCIONA */
+
+UPDATE sale_points SET description = 'Única' WHERE id = 1;

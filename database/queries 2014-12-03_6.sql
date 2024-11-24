@@ -1,0 +1,1 @@
+﻿ALTER TABLE customers ADD COLUMN type customer_type NOT NULL DEFAULT 'PERSONA';

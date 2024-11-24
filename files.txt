@@ -1,0 +1,6 @@
+AddType application/x-xpinstall .xpi
+AddType application/x-web-app-manifest+json .webapp
+RewriteBase /go/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]

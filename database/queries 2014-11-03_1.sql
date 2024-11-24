@@ -1,0 +1,1 @@
+﻿UPDATE products SET description = TRIM(regexp_replace(description, ' +', ' ', 'g'));

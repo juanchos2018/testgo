@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+	<meta charset="utf-8">
+	<title>document.write()</title>
+<style type="text/css">
+	
+</style></head>
+<body>
+	<div style="text-align:center;"></div>
+	<div></div>
+	<script type="text/javascript">
+		var company = window.parent.company;
+		var andress_depot = 'Av. Leguia. 1690';
+		var ruc = window.parent.ruc;
+		var printerSerial = window.parent.printerSerial;
+
+		var cashierName = window.parent.cashierName.toUpperCase();
+		var date = '';
+	
+		var f = new Date();
+		date = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+		var f = new Date();
+		hour=f.getHours()+":"+f.getMinutes()+":"+f.getSeconds(); 
+
+		var minTicket = window.parent.minTicket;
+		var maxTicket = window.parent.maxTicket;
+		var transaccions = window.parent.transaccions;
+
+		var igv = window.parent.igv;
+		var total = window.parent.total;
+
+		var bMinTicket = window.parent.bminTicket;
+		var bMaxTicket = window.parent.bmaxTicket;
+		var bTransaccions = window.parent.btransaccions;
+
+		var bIgv = window.parent.bigv;
+		var bTotal = window.parent.btotal;
+		var totalBoleta = window.parent.totalBoleta;
+
+
+		var totalCash = window.parent.totalCash;
+		var totalCreditCard = window.parent.totalCreditCard;
+		var totalNeto = parseInt(totalCash) + parseInt(totalCreditCard) + parseInt(totalBoleta);
+		var creditCards = window.parent.creditCards;
+		var totalCreditCard2 = 0;
+		
+		var rMinTicket = window.parent.rMinTicket;
+		var rMaxTicket = window.parent.rMaxTicket;
+		var rTransaccions = window.parent.rTransaccions;
+		var rtotal = window.parent.rtotal;
+
+		var puntos = false;
+
+		document.write('<div style="text-align:center;font-size:normal;font-family: "Courier New", Courier, monospace">');
+		document.write('<div style="text-align:center;">');
+		document.write('<div>'+company+'</div>');
+		document.write('<div>CIERRE DE CAJA (X)</div>');
+		document.write('<div>'+printerSerial+'</div>');
+		document.write('<div>'+andress_depot+'</div>');
+		document.write('<div>RUC: '+ruc+'</div>');
+		document.write('</div>');
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('Reporte de Tickets');
+		document.write('<div>----------------------------------------------------------------------</div>');	
+		document.write('<div style="float:left;width: 60%;display: inline-block;text-align:left;">Maquina Registradora</div><div style="float:left;width: 40%;display: inline-block;text-align:right;">'+printerSerial+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Fecha</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+date+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Hora</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+hour+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Operador</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+cashierName+'</div>');
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('Reporte de Tickets');
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Nro Transacciones</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+transaccions+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Nro Ticket Inicial</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+minTicket+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Nro Ticket Final</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+maxTicket+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Total IGV</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">S/'+igv+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Venta del Pto</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+total+'</div>');
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('Reporte de Boletas');
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Nro Transacciones</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+bTransaccions+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Nro Ticket Inicial</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+bMinTicket+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Nro Ticket Final</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+bMaxTicket+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Total IGV</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">S/'+bIgv+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Venta del Pto</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+bTotal+'</div>');
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('Resumen de Ventas');	
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Total Efectivo</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">S/'+totalCash+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Total Tarjeta</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">S/'+totalCreditCard+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">TOTAL NETO</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">S/'+totalNeto+'</div>');
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('Resumen de Tarjetas');	
+		document.write('<div>----------------------------------------------------------------------</div>');
+		for (i in creditCards) { 
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">'+creditCards[i].abbrev+'</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">S/'+creditCards[i].total+'</div>');
+			totalCreditCard2 = parseInt(totalCreditCard2) + parseInt(creditCards[i].total);
+		}
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">TOTAL TARJETA</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">S/'+totalCreditCard2+'</div>');
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('Resumen de Devoluciones');	
+		document.write('<div>----------------------------------------------------------------------</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Nro Devoluciones</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+rTransaccions+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Nro NC Inicial</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+rMinTicket+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">Nro NC Final</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+rMaxTicket+'</div>');
+		document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">TOTAL NC (-)</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">'+rtotal+'</div>');
+		if(puntos!=false){
+			document.write('Resumen Puntos');
+			document.write('<div>----------------------------------------------------------------------</div>');
+			document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">variable</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">valor</div>');
+			document.write('<div style="float:left;width: 50%;display: inline-block;text-align:left;">variable</div><div style="float:left;width: 50%;display: inline-block;text-align:right;">valor</div>');
+		}
+		document.write('</div>');
+	
+		//window.print();
+	</script>
+	
+</body></html>

@@ -1,0 +1,2 @@
+﻿ALTER TABLE sale_points DROP COLUMN cash;
+ALTER TABLE sale_points ADD COLUMN active BOOLEAN NOT NULL DEFAULT TRUE;

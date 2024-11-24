@@ -1,0 +1,29 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Products2 extends CI_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('product_model');
+	}
+	
+	public function get_stocks()
+	{
+        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Methods: GET, OPTIONS");
+        
+		$display = (empty($this->input->get('display')) ? 10 : $this->input->get('display'));
+		$page = (empty($this->input->get('page')) ? 1 : $this->input->get('page'));
+		$order = (empty($this->input->get('order')) ? NULL : $this->input->get('order'));
+		$filters = (empty($this->input->get('filters')) ? NULL : $this->input->get('filters'));
+        
+        $data = $this->product_model->get_stocks($display, $page, $order, $filters);
+
+        //$this->json_output($data);
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($data));
+	}
+
+}

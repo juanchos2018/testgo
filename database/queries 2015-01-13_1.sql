@@ -1,0 +1,2 @@
+﻿-- LLENANDO LOS CAMPOS regime PARA LAS NOTAS DE CREDITO (EN BASE A LAS VENTAS A LAS QUE PERTENECEN)
+UPDATE sales SET regime = (SELECT regime FROM sales s WHERE s.id = sales.refund_origin_id) WHERE sales.voucher = 'NOTA DE CREDITO';

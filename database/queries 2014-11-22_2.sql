@@ -1,0 +1,1 @@
+﻿ALTER TABLE barcodes RENAME TO product_details;

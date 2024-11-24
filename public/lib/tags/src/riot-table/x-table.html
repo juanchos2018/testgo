@@ -1,0 +1,211 @@
+<x-table>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-6" if={ originalData.length }>
+			<form class="form-horizontal" onsubmit={ cancelEvent }>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Filtrar</label>
+					<div class="col-sm-10">
+						<input type="search" class="form-control" name="search" oninput={ filter }>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th each={ label, i in labels }>{ label }</th>
+						</tr>
+					</thead>
+					<tbody name="xtable_body">
+						<tr each={ row, i in data }>
+							<td each={ col, j in parent.cols } class={ col.class }>{ parent.row[j] }</td>
+						</tr>
+						<tr if={ !data.length }>
+							<td colspan={ labels.length } class="text-center">No se encontraron registros</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					{ filteredData.length } registros
+				</div>
+				<div class="col-md-9" if={ data.length }>
+					<span class="xtable-paginator">
+						<a class="btn btn-default btn-sm xtable-page xtable-first-page" href="#" data-page="1" onclick="{ setPage }">«</a>
+						<a class="btn btn-default btn-sm xtable-page" href="#" data-page="{ currentPage - 1 }" onclick="{ setPage }">←</a>
+						<span if={ pages.length < 8 }>
+							<a each={ page, i in pages } class="btn btn-default btn-sm { btn-primary: page == parent.currentPage } xtable-page" href="#" data-page="{ page }" onclick="{ parent.setPage }">{ page }</a>
+						</span>
+						<span if={ pages.length > 7 }>
+							<a class="btn btn-default btn-sm { btn-primary: currentPage == 1 } xtable-page { 'xtable-page-end': currentPage > 4 }" href="#" data-page="1" onclick="{ setPage }">1</a>
+							<span if={ currentPage < 5 }>
+								<a class="btn btn-default btn-sm { btn-primary: currentPage == 2 } xtable-page" href="#" data-page="2" onclick="{ setPage }">2</a>
+								<a class="btn btn-default btn-sm { btn-primary: currentPage == 3 } xtable-page" href="#" data-page="3" onclick="{ setPage }">3</a>
+								<a class="btn btn-default btn-sm { btn-primary: currentPage == 4 } xtable-page" href="#" data-page="4" onclick="{ setPage }">4</a>
+								<a class="btn btn-default btn-sm { btn-primary: currentPage == 5 } xtable-page xtable-page-end" href="#" data-page="5" onclick="{ setPage }">5</a>
+							</span>
+							<span if={ currentPage > 4 && currentPage < pages.length - 3 }>
+								<span class="xtable-separator">...</span>
+								<a class="btn btn-default btn-sm xtable-page" href="#" data-page="{ currentPage - 1 }" onclick="{ setPage }">{ currentPage - 1 }</a>
+								<a class="btn btn-default btn-sm { btn-primary: true } xtable-page" href="#" data-page="{ currentPage }" onclick="{ setPage }">{ currentPage }</a>
+								<a class="btn btn-default btn-sm xtable-page xtable-page-end" href="#" data-page="{ currentPage + 1 }" onclick="{ setPage }">{ currentPage + 1 }</a>
+							</span>
+							<span if={ currentPage > pages.length - 4 }>
+								<span class="xtable-separator">...</span>
+								<a class="btn btn-default btn-sm { btn-primary: currentPage == pages.length - 4 } xtable-page" href="#" data-page="{ pages.length - 4 }" onclick="{ setPage }">{ pages.length - 4 }</a>
+								<a class="btn btn-default btn-sm { btn-primary: currentPage == pages.length - 3 } xtable-page" href="#" data-page="{ pages.length - 3 }" onclick="{ setPage }">{ pages.length - 3 }</a>
+								<a class="btn btn-default btn-sm { btn-primary: currentPage == pages.length - 2 } xtable-page" href="#" data-page="{ pages.length - 2 }" onclick="{ setPage }">{ pages.length - 2 }</a>
+								<a class="btn btn-default btn-sm { btn-primary: currentPage == pages.length - 1 } xtable-page" href="#" data-page="{ pages.length - 1 }" onclick="{ setPage }">{ pages.length - 1 }</a>
+							</span>
+							<span if={ currentPage < pages.length - 3 }>
+								<span class="xtable-separator">...</span>
+							</span>
+							<a class="btn btn-default btn-sm { btn-primary: currentPage == pages.length } xtable-page" href="#" data-page="{ pages.length }" onclick="{ setPage }">{ pages.length }</a>
+						</span>
+						<a class="btn btn-default btn-sm xtable-page" href="#" data-page="{ currentPage + 1 }" onclick="{ setPage }">→</a>
+						<a class="btn btn-default btn-sm xtable-page xtable-last-page" href="#" data-page="{ pages.length }" onclick="{ setPage }">»</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		.xtable-paginator {
+			display: inline;
+			float: right;
+		}
+
+		.xtable-page {
+			border-radius: 0 !important;
+			box-shadow: none !important;
+			border: 2px solid #E3E3E3;
+			border-right: none;
+		}
+
+		.xtable-page, .xtable-separator {
+			display: inline-block;
+			float: left;
+		}
+
+		.xtable-separator {
+			padding: 0 0.5em;
+			padding-top: 0.4em;
+		}
+
+		.xtable-first-page {
+			border-radius: 0.6em 0 0 0.6em !important;
+		}
+
+		.xtable-last-page {
+			border-radius: 0 0.6em 0.6em 0 !important;
+		}
+
+		.xtable-last-page, .xtable-page-end {
+			border-right: 2px solid #E3E3E3;
+		}
+	</style>
+
+	<script>
+		var self = this
+
+		self.start = 0
+		self.limit = opts.limit
+		self.labels = opts.labels
+		self.cols = opts.cols
+		self.originalData = opts.data
+		self.filteredData = self.originalData.slice(0)
+		self.filteredLength = self.filteredData.length
+		self.data = self.filteredData.slice(self.start, self.start + self.limit)
+		self.terms = ''
+		self.termsTimeout = 0
+
+		self.numPages = Math.floor(self.filteredLength / self.limit) + (self.filteredLength % self.data.length > 0 ? 1 : 0)
+		self.pages = []
+		self.currentPage = 1;
+
+		for (var i = 0; i < self.numPages; i++) self.pages.push(i + 1)
+
+		cancelEvent(e) {
+			return false
+		}
+
+		setPage(e) {
+			e.preventDefault();
+
+			if (e.target.dataset.page != self.currentPage && e.target.dataset.page > 0) {
+				self.currentPage = parseInt(e.target.dataset.page)
+			}
+		}
+
+		filter(e) {
+			if ( e.target.value !== self.terms ) {
+				self.terms = e.target.value
+
+				doFilter()
+			}
+
+			return true
+		}
+
+		function doFilter() {
+			self.termsTimeout && window.clearTimeout(self.termsTimeout)
+
+			self.termsTimeout = window.setTimeout(function () {
+				self.filteredData.length && (self.filteredData.length = 0)
+
+				if ( !self.terms.length ) {
+					self.filteredData = self.originalData.slice(0)
+				} else {
+					self.originalData.forEach(function (row) {
+						//console.log('row', row)
+						for ( var i = 0; i < row.length; i++ ) {
+							if ( new RegExp(self.terms, 'i') .test(row[i].toString()) ) {
+								self.filteredData.push(row)
+								break
+							}
+						}
+					})
+				}
+
+				console.log('self.filteredData', self.filteredData)
+
+				self.start = 0
+
+				self.termsTimeout = 0
+				self.update()
+			}, 500)
+		}
+
+		self.on('update', function () {
+			if ( self.filteredData.length !== self.filteredLength ) {
+				self.filteredLength = self.filteredData.length
+
+				self.numPages = Math.floor(self.filteredLength / self.limit) + (self.filteredLength % self.data.length > 0 ? 1 : 0)
+				self.pages.length = 0
+				self.currentPage = 1;
+
+				for (var i = 0; i < self.numPages; i++) self.pages.push(i + 1)
+			}
+
+			console.log('start', self.limit * (self.currentPage - 1));
+			self.start = self.limit * (self.currentPage - 1)
+			self.data = self.filteredData.slice(self.start, self.start + self.limit);
+
+			window.setTimeout(function () {
+				self.data.forEach(function (row, i) {
+					self.cols.forEach(function (col, j) {
+						if ('callback' in col) {
+							var tag = self.xtable_body.querySelector('tr:nth-child(' + (i + 1) + ')').querySelector('td:nth-child(' + (j + 1) + ')')
+
+							col.callback(row, tag)
+						}
+					})
+				})
+			})
+		});
+	</script>
+</x-table>

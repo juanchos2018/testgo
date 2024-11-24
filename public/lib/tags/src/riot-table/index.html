@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RiotTable</title>
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<h1 class="text-center">RiotTable</h1>
+
+	<div class="container">
+		<riot-table>
+			<div class="row">
+				<div class="col-lg-3">
+					<filter key="type">
+						<select class="form-control">
+							<option value="">- Seleccione -</option>
+							<option value="PAR">Números pares</option>
+							<option value="IMPAR">Números impares</option>
+						</select>
+					</filter>
+				</div>
+				<div class="col-lg-1 col-lg-offset-3 text-right">
+					Filtro
+				</div>
+				<div class="col-lg-5">
+					<searchbox input_class="form-control"></searchbox>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Nro.</th>
+								<th>Descripción</th>
+								<th>Tipo</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr each="{ row, index in data }">
+								<td>{ parent.num(index) }</td>
+								<td>{ row.text }</td>
+								<td>{ row.type }</td>
+								<td><a href="#" onclick="{ parent.opts.delete }">Eliminar</a></td>
+							</tr>
+							<tr if="{ !data.length }">
+								<td colspan="2">No se encontraron registros</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					{ total } registros
+				</div>
+				<div class="col-lg-6">
+					<paginator button_class="btn btn-sm btn-default" active_button_class="btn btn-sm btn-primary"></paginator>
+				</div>
+			</div>
+		</riot-table>
+		
+		<h3>Nuevo registro</h3>
+		
+		<form id="new">
+			<div class="row">
+				<div class="col-lg-6">
+					<input type="text" id="text" class="form-control" required>
+				</div>
+				<div class="col-lg-4">
+					<select id="type" required class="form-control">
+						<option value="">- Seleccione -</option>
+						<option value="PAR">Par</option>
+						<option value="IMPAR">Impar</option>
+					</select>
+				</div>
+				<div class="col-lg-2 text-right">
+					<button type="submit" class="btn btn-primary">Aceptar</button>
+				</div>
+			</div>	
+		</form>
+	</div>
+
+	<script type="text/javascript" src="../../../../../node_modules/riot/riot+compiler.min.js"></script>
+	<script type="text/javascript" src="../../../../../node_modules/riot/riot.compiler.min.js"></script>
+	<script type="riot/tag" src="searchbox.tag"></script>
+	<script type="riot/tag" src="filter.tag"></script>
+	<script type="riot/tag" src="paginator.tag"></script>
+	<script type="riot/tag" src="riot-table.tag"></script>
+	<script>
+		/* global riot */
+		var data = [];
+
+		for (var i = 0; i < 29; i++) {
+			data.push({
+				id: i + 1,
+				text: new Date() .toString(),
+				type: ((i + 1) % 2 === 0 ? 'PAR' : 'IMPAR')
+			});
+		}
+	
+		riot.compile(function () {
+			var table = riot.mount('riot-table', {
+				data: data,
+				limit: 4,
+				delete: function (e) {
+					data.splice(data.indexOf(e.item.row), 1);
+					
+					table[0].update({ data: data });
+				}
+			});
+			
+			document.querySelector('#new').addEventListener('submit', function (e) {
+				e.preventDefault();
+				
+				data.push({
+					id: data.length + 1,
+					text: document.querySelector('#text').value,
+					type: document.querySelector('#type').value
+				});
+				
+				document.querySelector('#text').value = '';
+				document.querySelector('#type').value = '';
+				document.querySelector('#text').focus();
+				
+				table[0].update({ data: data });
+			});
+		});
+	</script>
+</body>
+</html>

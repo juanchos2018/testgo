@@ -1,0 +1,1 @@
+﻿CREATE TYPE customer_type AS ENUM ('PERSONA', 'EMPRESA');

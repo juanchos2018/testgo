@@ -1,0 +1,1 @@
+﻿UPDATE customers SET type = 'EMPRESA' WHERE last_name IS NULL AND LENGTH(id_number) = 11

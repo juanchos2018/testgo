@@ -1,0 +1,13 @@
+/application/logs/
+/nbproject/
+/log.txt
+/desktop-app/node_modules/
+/composer.phar
+/composer.lock
+/package-lock.json
+/npm-debug.log
+/log
+/adminer
+/.c9/
+/.vscode/
+/leon/

@@ -1,0 +1,23 @@
+{
+  "name": "Go",
+  "private": true,
+  "dependencies": {
+    "world-flags-sprite": "*",
+    "jquery.easy-pie-chart": "~2.1.6",
+    "codemirror": "~5.9.0",
+    "angularjs-breakpoint": "*",
+    "chosen": "^1.5.1",
+    "angular": "^1.5.3",
+    "angular-animate": "^1.5.3",
+    "angular-route": "^1.5.3",
+    "bootstrap-datepicker": "^1.6.0",
+    "is_js": "^0.7.6",
+    "bootstrap-daterangepicker": "^2.1.19",
+    "js-xlsx": "~0.8.0",
+    "angular-sanitize": "1.5.3",
+    "urijs": "^1.18.10",
+    "d3": "^4.12.0",
+    "nvd3": "^1.8.6",
+    "angular-nvd3": "^1.0.9"
+  }
+}

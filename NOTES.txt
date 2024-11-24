@@ -1,0 +1,63 @@
+Para restaurar la base de datos emplear los comandos:
+
+*   En Windows:
+    %programfiles%\PostgreSQL\9.x\bin\psql -U postgres -f "ruta del archivo sql" -d "base de datos"
+
+*   En Linux (Para distros basadas en Debian/Ubuntu):
+    sudo su
+    sudo -u postgres psql -f "ruta del archivo sql" -d "base de datos"
+
+--------------------------------------------------------------------------------
+
+Para ver los valores que tiene un tipo creado manualmente, ejecutar la consulta:
+
+select e.enumlabel
+from pg_type t
+   join pg_enum e on t.oid = e.enumtypid
+   join pg_catalog.pg_namespace n ON n.oid = t.typnamespace
+where t.typname = NOMBRE_TIPO
+  and n.nspname = 'public';
+
+Donde NOMBRE_TIPO es el nombre del tipo, por ejemplo 'voucher_type' o 'regime_type'
+
+--------------------------------------------------------------------------------
+
+Consulta para obtner todas las llaves foráneas de la base de datos:
+
+SELECT
+    tc.constraint_name, tc.table_name, kcu.column_name, 
+    ccu.table_name AS foreign_table_name,
+    ccu.column_name AS foreign_column_name 
+FROM 
+    information_schema.table_constraints AS tc 
+    JOIN information_schema.key_column_usage AS kcu
+      ON tc.constraint_name = kcu.constraint_name
+    JOIN information_schema.constraint_column_usage AS ccu
+      ON ccu.constraint_name = tc.constraint_name
+WHERE constraint_type = 'FOREIGN KEY'
+AND ccu.table_name = '(NOMBRE DE ALGUNA TABLA)'
+
+--------------------------------------------------------------------------------
+
+Consulta para detectar VENTAS DUPLICADAS
+
+SELECT DISTINCT s1.id as id1, s2.id AS id2, EXTRACT(EPOCH FROM s1.sale_date) - EXTRACT(EPOCH FROM s2.sale_date) FROm sales s1 INNER JOIN sales s2 ON s1.id != s2.id AND ABS(EXTRACT(EPOCH FROM s1.sale_date) - EXTRACT(EPOCH FROM s2.sale_date)) < 60 AND s1.regime = s2.regime AND s1.cashier_id =  s2.cashier_id WHERE s1.sale_date >= '2015-12-07'::TIMESTAMP WITHOUT TIME ZONE
+
+--------------------------------------------------------------------------------
+
+Consulta para realizar transacciones en PostgreSQL sin crear funciones
+
+DO
+$do$
+DECLARE
+   arreglo INTEGER[];
+   arreglo2 INTEGER[];
+BEGIN
+	arreglo := ARRAY[1,2,3];
+	arreglo2 := array_append(arreglo, 6);
+      --arreglo := (SELECT array_append(arreglo, 1));
+	RAISE NOTICE 'another_func(%) --- (%)', arreglo, arreglo2;
+END
+$do$
+
+--------------------------------------------------------------------------------

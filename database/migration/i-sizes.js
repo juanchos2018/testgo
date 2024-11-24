@@ -1,0 +1,1 @@
+"INSERT INTO size (description, code, active) VALUES ('" + data[1] + "','"+ data[0]+"',TRUE);"

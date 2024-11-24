@@ -1,0 +1,1 @@
+﻿ALTER TYPE state_type ADD VALUE 'CANCELED';

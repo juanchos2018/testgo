@@ -1,0 +1,1 @@
+﻿DROP TABLE access_to_companies;

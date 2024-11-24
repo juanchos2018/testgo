@@ -1,0 +1,8 @@
+/* Usa recursos de fontello/animation.css */
+.animate-spin-fast {
+  -moz-animation: spin 1.2s infinite linear;
+  -o-animation: spin 1.2s infinite linear;
+  -webkit-animation: spin 1.2s infinite linear;
+  animation: spin 1.2s infinite linear;
+  display: inline-block;
+}

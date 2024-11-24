@@ -1,0 +1,4 @@
+[data-is="rdata"] tr[data-loading],
+rdata tr[data-loading] {
+    opacity: .5;
+}

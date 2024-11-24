@@ -1,0 +1,2 @@
+﻿ALTER TYPE state_type ADD VALUE 'SOLD';
+ALTER TYPE state_type ADD VALUE 'REFUNDED';

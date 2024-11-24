@@ -1,0 +1,3 @@
+﻿INSERT INTO customers (nro_inticard,barcode_inticard,barcode_card2,name,last_name,id_number,address, born_date, city, phone_number, mobile_phone_number, mobile_phone_number2, email, workplace, registered_at, gender, type, registered_by, registered_in, country, serie_inticard, associate_dni, associate_name, associate_relationship) VALUES 
+					  ('${this["5"]}','${this["6"]}','${this["7"]}','${this["8"]}','${this["9"]}','${this["1"]}','${this["10"]}','${this["11"]}','${this["12"]}','${this["13"]}','${this["14"]}','${this["15"]}','${this["16"]}','${this["17"]}','${this["18"]}','${this["21"]}','${this["22"]}',1,1,'${this["25"]}','${this["27"]}','${this["30"]}',
+                       '${this["29"]}','${this["28"]}');

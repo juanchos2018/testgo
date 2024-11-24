@@ -1,0 +1,4 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+/* The above line should appear only once */
+
+statuspanel[type="overLink"] { display: none !important }

@@ -1,0 +1,226 @@
+[
+    {
+        "name": "phpoffice/phpexcel",
+        "version": "1.8.1",
+        "version_normalized": "1.8.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PHPOffice/PHPExcel.git",
+            "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+            "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+            "shasum": ""
+        },
+        "require": {
+            "ext-xml": "*",
+            "ext-xmlwriter": "*",
+            "php": ">=5.2.0"
+        },
+        "time": "2015-05-01 07:00:55",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPExcel": "Classes/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL"
+        ],
+        "authors": [
+            {
+                "name": "Maarten Balliauw",
+                "homepage": "http://blog.maartenballiauw.be"
+            },
+            {
+                "name": "Mark Baker"
+            },
+            {
+                "name": "Franck Lefevre",
+                "homepage": "http://blog.rootslabs.net"
+            },
+            {
+                "name": "Erik Tilt"
+            }
+        ],
+        "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+        "homepage": "http://phpexcel.codeplex.com",
+        "keywords": [
+            "OpenXML",
+            "excel",
+            "php",
+            "spreadsheet",
+            "xls",
+            "xlsx"
+        ]
+    },
+    {
+        "name": "facebook/php-sdk-v4",
+        "version": "4.0.23",
+        "version_normalized": "4.0.23.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/facebook/php-graph-sdk.git",
+            "reference": "c82611e05596622c9bd7abfa1cea1512d885c95e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/c82611e05596622c9bd7abfa1cea1512d885c95e",
+            "reference": "c82611e05596622c9bd7abfa1cea1512d885c95e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "guzzlehttp/guzzle": "~4.0",
+            "mockery/mockery": "dev-master",
+            "phpunit/phpunit": "3.7.*"
+        },
+        "suggest": {
+            "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
+        },
+        "time": "2015-04-03 20:31:47",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Facebook\\": "src/Facebook/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Facebook Platform"
+        ],
+        "authors": [
+            {
+                "name": "Facebook",
+                "homepage": "https://github.com/facebook/facebook-php-sdk-v4/contributors"
+            }
+        ],
+        "description": "Facebook SDK for PHP",
+        "homepage": "https://github.com/facebook/facebook-php-sdk-v4",
+        "keywords": [
+            "facebook",
+            "sdk"
+        ]
+    },
+    {
+        "name": "kriswallsmith/buzz",
+        "version": "v0.15.1",
+        "version_normalized": "0.15.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kriswallsmith/Buzz.git",
+            "reference": "d59932b335c2f2f3ec9eee66a37db6bd50d39e13"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/d59932b335c2f2f3ec9eee66a37db6bd50d39e13",
+            "reference": "d59932b335c2f2f3ec9eee66a37db6bd50d39e13",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.3.3 || ^7.0"
+        },
+        "require-dev": {
+            "symfony/phpunit-bridge": "^3.3"
+        },
+        "suggest": {
+            "ext-curl": "*"
+        },
+        "time": "2017-08-19 09:43:47",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Buzz\\": "lib/Buzz"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kris Wallsmith",
+                "email": "kris.wallsmith@gmail.com",
+                "homepage": "http://kriswallsmith.net/"
+            }
+        ],
+        "description": "Lightweight HTTP client",
+        "homepage": "https://github.com/kriswallsmith/Buzz",
+        "keywords": [
+            "curl",
+            "http client"
+        ]
+    },
+    {
+        "name": "tecnickcom/tcpdf",
+        "version": "6.2.13",
+        "version_normalized": "6.2.13.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tecnickcom/TCPDF.git",
+            "reference": "95c5938aafe4b20df1454dbddb3e5005c0b26f64"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/95c5938aafe4b20df1454dbddb3e5005c0b26f64",
+            "reference": "95c5938aafe4b20df1454dbddb3e5005c0b26f64",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2017-04-26 08:14:48",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "config",
+                "include",
+                "tcpdf.php",
+                "tcpdf_parser.php",
+                "tcpdf_import.php",
+                "tcpdf_barcodes_1d.php",
+                "tcpdf_barcodes_2d.php",
+                "include/tcpdf_colors.php",
+                "include/tcpdf_filters.php",
+                "include/tcpdf_font_data.php",
+                "include/tcpdf_fonts.php",
+                "include/tcpdf_images.php",
+                "include/tcpdf_static.php",
+                "include/barcodes/datamatrix.php",
+                "include/barcodes/pdf417.php",
+                "include/barcodes/qrcode.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPLv3"
+        ],
+        "authors": [
+            {
+                "name": "Nicola Asuni",
+                "email": "info@tecnick.com",
+                "homepage": "http://nicolaasuni.tecnick.com"
+            }
+        ],
+        "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
+        "homepage": "http://www.tcpdf.org/",
+        "keywords": [
+            "PDFD32000-2008",
+            "TCPDF",
+            "barcodes",
+            "datamatrix",
+            "pdf",
+            "pdf417",
+            "qrcode"
+        ]
+    }
+]

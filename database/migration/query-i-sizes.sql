@@ -1,0 +1,1 @@
+INSERT INTO size (description, code) VALUES ('${this.DESTALLA}','${this.CDTALLA}');

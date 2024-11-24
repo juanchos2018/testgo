@@ -1,0 +1,91 @@
+@page {
+  size: auto;/* es el valor por defecto */
+  margin: 0;
+}
+header{
+visibility:hidden; 
+   display: none; 
+};
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: none !important;
+  border-radius: 0;
+  outline: none;
+  -webkit-box-shadow: 0;
+  box-shadow: 0;
+}
+}
+.modal-body {
+  position: relative;
+  padding: 0;
+}
+
+.modal-header {
+  min-height: 16.42857143px;
+  padding: 0px;
+  border-bottom: 0;
+  visibility:hidden; 
+  display: none;
+}
+.modal-footer {
+  padding: 0;
+  margin: 0;
+  text-align: right;
+  border-top: 0;
+  visibility:hidden; 
+  display: none;
+}
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 0;
+}
+
+/*Ticket impresion*/
+#ticket-modal .modal-body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#ticket-modal .ticket-container {
+    font-family: sans-serif;
+    line-height: 12pt;
+    color: #000;
+    font-weight: lighter;
+}
+
+#ticket-modal .ticket-container > div {
+    margin: 0;
+    clear: both;
+}
+
+#ticket-modal .ticket-container > div.bolder {
+    font-weight: bold;
+}
+
+#ticket-modal .ticket-container > div.separator,
+#ticket-modal .ticket-container > div > div.separator {
+    border-bottom: 0;
+    margin-bottom: 0;
+    line-height: 8pt;
+}
+
+#ticket-modal .ticket-container > div.separator:after,
+#ticket-modal .ticket-container > div > div.separator:after {
+    content: '\0000a0';
+}
+
+#ticket-modal .ticket-container > div > [class^='col'] {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*Ticket impresion*/
+.wrapper-lg {
+  padding: 0;
+}

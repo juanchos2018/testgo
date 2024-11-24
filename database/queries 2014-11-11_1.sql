@@ -1,0 +1,5 @@
+﻿ALTER TABLE coupons DROP COLUMN state;
+ALTER TABLE coupons ALTER COLUMN used_date DROP NOT NULL;
+ALTER TABLE coupons ALTER COLUMN creation_date TYPE DATE;
+ALTER TABLE coupons ALTER COLUMN creation_date SET DEFAULT CURRENT_DATE;
+ALTER TABLE coupons ADD COLUMN expiry_date DATE;

@@ -1,0 +1,14 @@
+[erp-simple-calc] .modal-body {
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+[erp-simple-calc] .modal-body > .row > div button.btn-default,
+[erp-payment-calc] .modal-body > .row > div button.btn-default,
+[erp-payment-calc] .modal-body > .row div.big-text {
+    min-height: 54px;
+    white-space: nowrap;
+	overflow: hidden;
+	width: 100%;
+	text-overflow: ellipsis;
+}

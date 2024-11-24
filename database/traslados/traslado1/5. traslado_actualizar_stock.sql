@@ -1,0 +1,9 @@
+﻿UPDATE stock SET store_stock = GREATEST(store_stock - 1, 0) WHERE id = 25627; UPDATE stock SET store_stock = GREATEST(store_stock, 0) + 1 WHERE id = 26662; /* --- */ 
+UPDATE stock SET store_stock = GREATEST(store_stock - 2, 0) WHERE id = 25628; UPDATE stock SET store_stock = GREATEST(store_stock, 0) + 2 WHERE id = 26663; /* --- */ 
+UPDATE stock SET store_stock = GREATEST(store_stock - 2, 0) WHERE id = 25675; UPDATE stock SET store_stock = GREATEST(store_stock, 0) + 2 WHERE id = 26671; /* --- */ 
+UPDATE stock SET store_stock = GREATEST(store_stock - 1, 0) WHERE id = 24239; UPDATE stock SET store_stock = GREATEST(store_stock, 0) + 1 WHERE id = 26546; /* --- */ 
+UPDATE stock SET store_stock = GREATEST(store_stock - 1, 0) WHERE id = 26484; UPDATE stock SET store_stock = GREATEST(store_stock, 0) + 1 WHERE id = 26559; /* --- */ 
+UPDATE stock SET store_stock = GREATEST(store_stock - 1, 0) WHERE id = 24497; UPDATE stock SET store_stock = GREATEST(store_stock, 0) + 1 WHERE id = 26726; /* --- */ 
+UPDATE stock SET store_stock = GREATEST(store_stock - 1, 0) WHERE id = 24496; UPDATE stock SET store_stock = GREATEST(store_stock, 0) + 1 WHERE id = 26727; /* --- */ 
+UPDATE stock SET store_stock = GREATEST(store_stock - 1, 0) WHERE id = 26339; UPDATE stock SET store_stock = GREATEST(store_stock, 0) + 1 WHERE id = 26759; /* --- */ 
+UPDATE stock SET store_stock = GREATEST(store_stock - 1, 0) WHERE id = 26338; UPDATE stock SET store_stock = GREATEST(store_stock, 0) + 1 WHERE id = 26760; /* --- */ 

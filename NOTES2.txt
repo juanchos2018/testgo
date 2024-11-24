@@ -1,0 +1,127 @@
+/* Consulta Arqueo de Caja */
+SELECT 
+to_char(sale_date, 'DD/MM/YYYY') AS fecha,
+sales.voucher,
+to_char(serie, '000') || '-' || to_char(serial_number,'0000000') AS nro_comprobante,
+customers.id_number AS customer_dni,
+customers."name" || ' ' || customers.last_name AS customer_name,
+sales."state",
+sales.total_amount - sales.igv as valor,
+sales.igv,
+sales.total_amount,
+sales.cash_amount,
+sales.credit_card_amount,
+credit_card_types.abbrev,
+credit_cards.amount
+FROM sales 
+LEFT JOIN customers ON customers.id = sales.customer_id 
+LEFT JOIN credit_cards ON credit_cards.sale_id = sales.id
+LEFT JOIN credit_card_types ON credit_card_types."id" = credit_cards.credit_card_type_id
+WHERE sales.sale_date::DATE >= '2015-12-01'
+AND sales.sale_date::DATE <= '2015-12-31'
+ORDER BY sale_date,nro_comprobante ASC
+
+/* Consulta Inventario con talla Fin de año */
+
+SELECT stock.id, stock.product_barcode_id, products.code,"size".description,product_barcodes.old_barcode,products.regime,
+stock.store_stock,
+categories.description AS linea,subcategories.description AS tipo,brands.description AS marca, uses.description AS deporte, genders.description AS genero, ages.description AS edad,
+stock.last_entry , stock.last_sale
+FROM stock 
+INNER JOIN product_barcodes ON product_barcodes.id = stock.product_barcode_id
+INNER JOIN size ON "size".id = product_barcodes.size_id
+INNER JOIN product_details ON product_details.id = product_barcodes.product_detail_id
+INNER JOIN products ON products.id = product_details.product_id
+LEFT JOIN brands ON brands.id = products.brand_id
+LEFT JOIN categories ON categories.id = products.category_id
+LEFT JOIN subcategories ON subcategories.id = products.subcategory_id
+LEFT JOIN uses ON uses."id" = products.uses_id
+LEFT JOIN genders ON genders.id = products.gender_id
+LEFT JOIN ages ON ages.id = products.ages_id
+ORDER BY stock.id
+
+/*2 */
+
+SELECT stock.id, stock.product_barcode_id, products.code,"size".description,product_barcodes.old_barcode,products.regime,
+stock.store_stock,
+categories.description AS linea,subcategories.description AS tipo,brands.description AS marca, uses.description AS deporte, genders.description AS genero, ages.description AS edad,
+stock.last_entry , stock.last_sale
+FROM stock 
+INNER JOIN product_barcodes ON product_barcodes.id = stock.product_barcode_id
+INNER JOIN size ON "size".id = product_barcodes.size_id
+INNER JOIN product_details ON product_details.id = product_barcodes.product_detail_id
+INNER JOIN products ON products.id = product_details.product_id
+LEFT JOIN brands ON brands.id = products.brand_id
+LEFT JOIN categories ON categories.id = products.category_id
+LEFT JOIN subcategories ON subcategories.id = products.subcategory_id
+LEFT JOIN uses ON uses."id" = products.uses_id
+LEFT JOIN genders ON genders.id = products.gender_id
+LEFT JOIN ages ON ages.id = products.ages_id
+ORDER BY stock.id
+
+/* Resumen de venta por categoria en el año */
+
+SELECT TO_CHAR(sales.sale_date, 'DD-MM-YYYY') AS Fecha, categories.description AS category, sum(subtotal) AS total_amount 
+FROM "sales"
+JOIN "sale_details" ON "sales"."id" = "sale_details"."sale_id" 
+LEFT JOIN "product_barcodes" ON "sale_details"."product_barcode_id" = "product_barcodes"."id"
+LEFT JOIN "product_details" ON "product_barcodes"."product_detail_id" = "product_details"."id"
+LEFT JOIN "products" ON "product_details"."product_id" = "products"."id" 
+LEFT JOIN "categories" ON "products"."category_id" = "categories"."id"
+WHERE "sales"."active" =  't'
+AND "sales"."company_id" =  '1'
+AND "voucher" != 'NOTA DE CREDITO'
+AND "state" =  'SOLD'
+AND DATE(sales.sale_date) >=  '2015-12-07'
+AND DATE(sales.sale_date) <=  '2015-12-31' 
+GROUP BY "categories"."description", Fecha
+ORDER BY Fecha
+
+/* Inventario por Producto */
+
+SELECT 
+products.code AS Codigo,
+products.description AS Descripcion,
+categories.description AS Linea,
+subcategories.description AS Tipo,
+brands.description AS Marca,
+uses.description AS Deporte,
+genders.description AS genero,
+ages.description AS edad,
+SUM(stock.store_stock) AS Stock,
+products.regime,
+product_details.cost_currency AS Costo_m,
+product_details."cost" AS Costo_u,
+product_details.price AS PVP,
+product_details.offer_price
+FROM stock 
+INNER JOIN product_barcodes ON product_barcodes.id = stock.product_barcode_id
+INNER JOIN product_details ON product_details.id = product_barcodes.product_detail_id
+INNER JOIN products ON products.id = product_details.product_id
+INNER JOIN size ON "size".id = product_barcodes.size_id
+LEFT JOIN brands ON products.brand_id = brands."id"
+LEFT JOIN categories ON categories."id" = products.category_id
+LEFT JOIN subcategories ON subcategories.id = products.subcategory_id
+LEFT JOIN uses ON uses.id = products.uses_id
+LEFT JOIN genders ON genders.id = products.gender_id
+LEFT JOIN ages ON ages.id = products.ages_id
+GROUP BY Codigo,Descripcion,Linea,Tipo,Marca,Deporte,genero,edad,products.regime,product_details.cost_currency,product_details."cost",pvp,product_details.offer_price
+
+/* Reporte contabilidad */
+
+SELECT subsidiary_journal as cssubdia, lpad(cast(sales.serie as text), 3, '0') || '-' || lpad(cast(sales.serial_number as text), 7, '0') as ccompro, 
+TO_CHAR(sale_date, 'YYYY-MM-DD') AS cfeccom, 2.79 as ctipcam, 
+sales.voucher, sales.regime,
+last_name || ', ' || lpad(cast(sales.serie as text), 3, '0') || '-' || lpad(cast(sales.serial_number as text), 
+5, '0') as cglosa, 
+total_amount as ctotal, 
+COALESCE(igv, 0) as igv, 
+customers.id_number 
+FROM "sales" 
+LEFT JOIN "customers" ON "customers"."id" = "sales"."customer_id" 
+LEFT JOIN "branch_details" ON "sales"."branch_id" = "branch_details"."branch_id" 
+LEFT JOIN 
+WHERE "series"."serie" = sales.serie 
+AND "series"."voucher" = sales.voucher 
+AND "series"."regime" = sales.regime 
+AND DATE(sales.sale_date) BETWEEN '' AND ''

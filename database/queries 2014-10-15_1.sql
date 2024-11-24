@@ -1,0 +1,5 @@
+-- CAMBIANDO LA ESTRUCTURA DE USUARIOS Y EMPLEADOS
+ALTER TABLE users DROP COLUMN employee_id;
+ALTER TABLE employees ADD COLUMN user_id INTEGER;
+ALTER TABLE employees ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+UPDATE employees SET user_id = 1;
