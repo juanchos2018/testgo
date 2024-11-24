@@ -265,7 +265,7 @@ window.angular.module('ERP').directive('erpCustomerChooser', [
 
 					Ajax.post($window.siteUrl('customers/save_from_sale'), $scope.record).then(function (res) {
 						var data = res.data;
-						
+						console.log("respuesta stgore",res);
 						$scope.setValue(data);
 
 						$element.find('.modal[name="add"]').modal('hide');
@@ -823,7 +823,7 @@ window.angular.module('ERP').directive('erpCustomerChooser', [
 											<div class="form-group m-t">\
 												<button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>\
 										  		<button type="submit" class="btn btn-primary">\
-										  			Registrar\
+										  			RegistrarCliente \
 										  		</button>\
 											</div>\
 										</div>\
