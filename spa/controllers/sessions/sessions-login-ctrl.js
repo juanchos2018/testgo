@@ -6,8 +6,8 @@ window.angular.module('ERP').controller('SessionsLoginCtrl', [
         //var branches = {};
 
     	$scope.credentials = {
-    		login: '',
-    		password: ''
+    		login: 'ENGEL',
+    		password: 'mktarias'
     	};
 
     	$scope.user = {
@@ -76,7 +76,7 @@ window.angular.module('ERP').controller('SessionsLoginCtrl', [
 
                 $scope.user.customRoleId = '';
                 
-                $scope.credentials.login = '';
+                $scope.credentials.login = 'ENGEL';
                 $scope.credentials.password = '';
 
                 $scope.$apply();

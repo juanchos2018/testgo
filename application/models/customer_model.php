@@ -374,7 +374,7 @@ class Customer_Model extends MY_Model {
                 
                  // (Para caja) Si no se debe emitir el ticket a nombre de la empresa
                 if (is_null($company) OR empty($company['id_number']) OR empty($company['name'])) {
-                    
+
                     $LastIdInserted = $this->db->query("SELECT LASTVAL() AS last_id")->row()->last_id;
                     // $query = $this->db->query('SELECT LAST_INSERT_ID()');
                     // $row = $query->row_array();
@@ -430,9 +430,11 @@ class Customer_Model extends MY_Model {
                     } else { // Se debe registrar la empresa
                         if ($this->db->insert('customers', $company_data)) {
 
-                            $query = $this->db->query('SELECT LAST_INSERT_ID()');
-                            $row = $query->row_array();
-                            $LastIdInserted = $row['LAST_INSERT_ID()'];
+                            // $query = $this->db->query('SELECT LAST_INSERT_ID()');
+                            // $row = $query->row_array();
+                            // $LastIdInserted = $row['LAST_INSERT_ID()'];
+
+                            $LastIdInserted = $this->db->query("SELECT LASTVAL() AS last_id")->row()->last_id;
 
                             
                             return array(
@@ -547,9 +549,7 @@ class Customer_Model extends MY_Model {
                 
                 if ($this->db->insert('customers', $this)) {
 
-                    $query = $this->db->query('SELECT LAST_INSERT_ID()');
-                    $row = $query->row_array();
-                    $LastIdInserted = $row['LAST_INSERT_ID()'];
+                    $LastIdInserted = $this->db->query("SELECT LASTVAL() AS last_id")->row()->last_id;
 
                     return array(
                         //'id' => $this->db->insert_id(),

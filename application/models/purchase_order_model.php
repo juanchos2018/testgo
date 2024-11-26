@@ -41,7 +41,8 @@ class Purchase_order_model extends CI_Model {
 
     function next_id()
 	{
-        $this->db->select('last_value + increment_by AS result', FALSE);
+        //$this->db->select('last_value + increment_by AS result', FALSE);
+        $this->db->select('last_value + 1 AS result', FALSE);
 
         $query = $this->db->get('purchase_orders_id_seq');
 

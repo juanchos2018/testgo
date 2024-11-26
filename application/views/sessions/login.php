@@ -20,10 +20,10 @@
               </div>
 
               <div class="list-group-item">
-                <input type="text" ng-model="credentials.login" id="txtLogin" placeholder="Usuario o correo electrónico" class="form-control no-border" autofocus required />
+                <input type="text" ng-model="credentials.login" id="txtLogin" value="ENGEL" placeholder="Usuario o correo electrónico" class="form-control no-border" autofocus required />
               </div>
               <div class="list-group-item">
-                 <input type="password" ng-model="credentials.password" id="txtPassword" placeholder="Contraseña" class="form-control no-border" required />
+                 <input type="password" ng-model="credentials.password" id="txtPassword" placeholder="Contraseña" class="form-control no-border" required  value="mktarias"/>
               </div>
             </div>
 

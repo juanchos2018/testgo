@@ -25,7 +25,7 @@ window.angular.module('ERP').controller('UsersAddCtrl', [
         };
 
         $scope.user = {
-            username: '',
+            username: 'ENGEL',
             email: '',
             password: '',
             avatar_mode: 1,

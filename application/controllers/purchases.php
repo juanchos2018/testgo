@@ -45,6 +45,7 @@ class Purchases extends MY_Controller {
 		$single_tables = $this->product_model->get_single_tables();
 
 		$data['next_id'] = $this->purchase_model->next_id();
+		//$data['next_id'] = 1;
 
 		$data['categories'] = $single_tables[0]['records'];
 		$data['genders'] = $single_tables[1]['records'];
